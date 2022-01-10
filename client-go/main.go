@@ -9,13 +9,13 @@ import (
 	"os"
 )
 
-var CLIENT_NAME = "CLIENT_1"
+var CLIENT_NAME = "CLIENT_GO"
 
 func main() {
 	var (
 		certName    = CLIENT_NAME + "_cert.pem"
 		privKeyName = CLIENT_NAME + "_privkey.key"
-		hostname    = "uece.br"
+		hostname    = "0.0.0.0"
 		port        = 443
 	)
 	if _, err := os.Stat(certName); os.IsNotExist(err) {
