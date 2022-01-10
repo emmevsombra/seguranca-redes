@@ -4,6 +4,7 @@ import (
 	"crypto/tls"
 	"errors"
 	"fmt"
+	"myapp/certificate"
 )
 
 // Returns a connection to the hostname:port
@@ -11,7 +12,6 @@ func ConnectToServer(hostname string, port int, certName, privKeyName string) (*
 	const (
 		protocol = "tcp"
 	)
-
 	// Load agent's self signed certificate
 	cert, err := tls.LoadX509KeyPair(certName, privKeyName)
 	if err != nil {
@@ -35,7 +35,7 @@ func ConnectToServer(hostname string, port int, certName, privKeyName string) (*
 	// Get server certificate and check if it belongs to Morphus
 	state := conn.ConnectionState()
 	certSent := state.PeerCertificates[0]
-	err = certificate.CheckIfServerIsMorphus(certSent)
+	err = certificate.CheckIfServerIsValid(certSent)
 	if err != nil {
 		return nil, errors.New("server certificate is not from Morphus")
 	}
