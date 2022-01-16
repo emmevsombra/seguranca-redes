@@ -1,3 +1,5 @@
 server/env/
 server/__pycache__/
 server/connection/__pycache__/
+server-js/node_modules/
+server-js/package-lock.json/
